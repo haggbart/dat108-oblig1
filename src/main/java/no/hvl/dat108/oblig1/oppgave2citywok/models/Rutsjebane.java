@@ -12,13 +12,22 @@ public class Rutsjebane {
     }
 
     public synchronized void add(Kokk kokk, Burger burger) {
-        burgere.add(burger);
         System.out.printf("[%s] %s(%d) legger på burger. (%d) => %s\n",
                 currentTime(), kokk.getNavn(), kokk.getId(), burger.getId(), this);
+        burgere.add(burger);
+        notify(); // vekker den første tråden som venter (det legges kun til 1 burger)
     }
 
     public synchronized boolean take(Servitoer servitoer) {
-        if (burgere.isEmpty()) return false;
+        if (burgere.isEmpty()) {
+            try {
+                System.out.printf("### %s(%d) vil ta en hamburger, men rutsjebanen er tom. Venter! ###\n",
+                        servitoer.getNavn(), servitoer.getId());
+                wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
         Burger burger = burgere.remove();
 
         System.out.printf("[%s] %s(%d) tar av burger. (%d) <= %s\n",
@@ -38,6 +47,8 @@ public class Rutsjebane {
         for (Burger burger : burgere) {
             sb.append('(').append(burger.getId()).append("), ");
         }
+        if (!burgere.isEmpty())
+            sb.setLength(sb.length() - 2);
         sb.append(']');
         return sb.toString();
     }
