@@ -7,6 +7,22 @@ public class Kokk implements Runnable {
     private static final Random random = new Random();
     private static final Rutsjebane rutsjebane = new Rutsjebane();
 
+    private final int id;
+    private final String navn;
+
+    public Kokk(int id, String navn) {
+        this.id = id;
+        this.navn = navn;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNavn() {
+        return navn;
+    }
+
     @Override
     public void run() {
         while (true) {
@@ -17,7 +33,7 @@ public class Kokk implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                rutsjebane.add(new Burger());
+                rutsjebane.add(this, new Burger());
             }
         }
     }
