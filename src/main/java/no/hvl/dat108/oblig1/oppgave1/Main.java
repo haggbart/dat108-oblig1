@@ -10,5 +10,7 @@ public class Main {
         new Thread(dialog).start();
 
         System.out.println("TEST FOR ROGER :*");
+
+        
     }
 }
