@@ -14,20 +14,24 @@ public class Main {
 
         Rutsjebane bane = new Rutsjebane();
 
-        new Kokk(bane);
+        Kokk kokk1 = new Kokk(bane);
+        Kokk kokk2 = new Kokk(bane);
 
-        bane.leggTil(test);
-        bane.leggTil(test2);
-        bane.leggTil(test3);
-        bane.leggTil(test4);
-        bane.leggTil(test5);
-        bane.leggTil(test6);
+        kokk1.start();
+        kokk2.start();
 
-        bane.printBane();
-        System.out.println();
-        bane.hentBurger();
+//        bane.leggTil(test);
+//        bane.leggTil(test2);
+//        bane.leggTil(test3);
+//        bane.leggTil(test4);
+//        bane.leggTil(test5);
+//        bane.leggTil(test6);
 
-        bane.printBane();
+//        bane.printBane();
+//        System.out.println();
+//        bane.hentBurger();
+//
+//        bane.printBane();
 
 
 

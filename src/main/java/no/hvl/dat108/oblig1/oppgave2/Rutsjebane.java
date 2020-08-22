@@ -38,6 +38,10 @@ public class Rutsjebane {
         return bane[0].getType();
     }
 
+    public boolean erFull() {
+        return bak == 5;
+    }
+
     public void printBane() {
 
         System.out.print("Burgere i banen: ");
