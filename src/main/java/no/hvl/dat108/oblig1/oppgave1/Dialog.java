@@ -1,5 +1,7 @@
 package no.hvl.dat108.oblig1.oppgave1;
 
+import org.w3c.dom.ls.LSOutput;
+
 import static javax.swing.JOptionPane.showInputDialog;
 
 public class Dialog implements Runnable {
@@ -20,5 +22,7 @@ public class Dialog implements Runnable {
         }
         System.out.println("Shutting down...");
         printer.quit();
+
+        System.out.println("Mads e noob");
     }
 }
