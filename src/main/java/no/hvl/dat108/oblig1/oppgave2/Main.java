@@ -14,6 +14,8 @@ public class Main {
 
         Rutsjebane bane = new Rutsjebane();
 
+        new Kokk(bane);
+
         bane.leggTil(test);
         bane.leggTil(test2);
         bane.leggTil(test3);
