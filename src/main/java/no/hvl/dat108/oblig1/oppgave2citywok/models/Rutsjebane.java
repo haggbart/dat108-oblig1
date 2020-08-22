@@ -17,6 +17,15 @@ public class Rutsjebane {
                 currentTime(), kokk.getNavn(), kokk.getId(), burger.getId(), this);
     }
 
+    public synchronized boolean take(Servitoer servitoer) {
+        if (burgere.isEmpty()) return false;
+        Burger burger = burgere.remove();
+
+        System.out.printf("[%s] %s(%d) tar av burger. (%d) <= %s\n",
+                currentTime(), servitoer.getNavn(), servitoer.getId(), burger.getId(), this);
+        return true;
+    }
+
     private String currentTime() {
         var time = LocalTime.now();
         return String.format("%02d:%02d", time.getMinute(), time.getSecond());

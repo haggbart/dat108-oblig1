@@ -1,17 +1,25 @@
 package no.hvl.dat108.oblig1.oppgave2citywok.models;
 
-public class Servitoer implements Runnable {
+public class Servitoer extends Ansatt implements Runnable {
 
-    private final int id;
-    private final String navn;
 
     public Servitoer(int id, String navn) {
-        this.id = id;
-        this.navn = navn;
+        super(id, navn);
     }
 
     @Override
     public void run() {
 
+        while (true) {
+
+            synchronized (this) {
+                try {
+                    wait(random.nextInt(4000) + 2000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                rutsjebane.take(this);
+            }
+        }
     }
 }

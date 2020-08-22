@@ -19,7 +19,7 @@ public class Main {
 
         // initiere servitører
         for (int i = 1; i <= 2; i++) {
-            new Thread(new Servitoer(i, faker.name().firstName()));
+            new Thread(new Servitoer(i, faker.name().firstName())).start();
         }
     }
 }
