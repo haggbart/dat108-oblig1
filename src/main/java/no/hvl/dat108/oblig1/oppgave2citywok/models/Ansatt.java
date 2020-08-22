@@ -5,7 +5,7 @@ import java.util.Random;
 public abstract class Ansatt {
 
     protected static final Random random = new Random();
-    protected static final Rutsjebane rutsjebane = new Rutsjebane();
+    protected static final Rutsjebane rutsjebane = Rutsjebane.getInstance();
 
     private final int id;
     private final String navn;
@@ -15,11 +15,8 @@ public abstract class Ansatt {
         this.navn = navn;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getNavn() {
-        return navn;
+    @Override
+    public String toString() {
+        return String.format("%s(%s)", navn, id);
     }
 }

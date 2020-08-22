@@ -10,7 +10,7 @@ public class Servitoer extends Ansatt implements Runnable {
     @Override
     public void run() {
 
-        while (true) {
+        while (rutsjebane.mottarOrdre() || !rutsjebane.isEmpty()) {
 
             synchronized (this) {
                 try {

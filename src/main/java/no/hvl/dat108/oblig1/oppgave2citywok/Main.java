@@ -2,39 +2,64 @@ package no.hvl.dat108.oblig1.oppgave2citywok;
 
 import com.github.javafaker.Faker;
 import no.hvl.dat108.oblig1.oppgave2citywok.models.Kokk;
+import no.hvl.dat108.oblig1.oppgave2citywok.models.Rutsjebane;
 import no.hvl.dat108.oblig1.oppgave2citywok.models.Servitoer;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.currentTime;
 
 public class Main {
 
     private static final int ANTALL_KOKKER = 3;
     private static final int ANTALL_SERVITOERER = 2;
-    private static final int RUNTIME_SECONDS = 20;
+    private static final int AAPNINGSTID_SEKUNDER = 30;
+
     private static final Locale LOCALE = new Locale("nb-no");
+    private static final List<Thread> threads = new ArrayList<>(ANTALL_KOKKER + ANTALL_SERVITOERER);
+
 
     public static void main(String[] args) {
 
         Faker faker = new Faker(LOCALE);
 
         // inititere kokker
-        for (int i = 1; i <= ANTALL_KOKKER; i++) {
-            new Thread(new Kokk(i, faker.name().firstName())).start();
+        for (int id = 1; id <= ANTALL_KOKKER; id++) {
+            var thread = new Thread(new Kokk(id, faker.name().firstName()));
+            threads.add(thread);
+            thread.start();
         }
 
         // initiere servitører
-        for (int i = 1; i <= ANTALL_SERVITOERER; i++) {
-            new Thread(new Servitoer(i, faker.name().firstName())).start();
+        for (int id = 1; id <= ANTALL_SERVITOERER; id++) {
+            var thread = new Thread(new Servitoer(id, faker.name().firstName()));
+            threads.add(thread);
+            thread.start();
         }
 
+        ventTilStengetid();
+        gjoerFerdigBestillinger();
+    }
 
-        // avslutte programmet på etter 20 sekunder
+    private static void ventTilStengetid() {
         try {
-            Thread.sleep(RUNTIME_SECONDS * 1000);
+            Thread.sleep(AAPNINGSTID_SEKUNDER * 1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
-            System.exit(-1);
         }
-        System.exit(0);
+        Rutsjebane.getInstance().steng();
+    }
+
+    private static void gjoerFerdigBestillinger() {
+        for (Thread thread : threads) {
+            try {
+                thread.join();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+        System.out.printf("[%s] ### Hamburger-sjappen er stengt! ###\n", currentTime());
     }
 }

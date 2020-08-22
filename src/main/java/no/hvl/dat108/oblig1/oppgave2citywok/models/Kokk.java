@@ -8,7 +8,7 @@ public class Kokk extends Ansatt implements Runnable {
 
     @Override
     public void run() {
-        while (true) {
+        while (rutsjebane.mottarOrdre()) {
 
             synchronized (this) {
                 try {
@@ -16,7 +16,7 @@ public class Kokk extends Ansatt implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                rutsjebane.add(this, new Burger());
+                rutsjebane.add(this, new Hamburger());
             }
         }
     }
