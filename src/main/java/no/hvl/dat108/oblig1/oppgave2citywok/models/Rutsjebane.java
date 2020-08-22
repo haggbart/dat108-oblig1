@@ -13,7 +13,7 @@ public final class Rutsjebane {
 
     private final Queue<Hamburger> hamburgere;
 
-    public Rutsjebane() {
+    private Rutsjebane() {
         this.hamburgere = new ArrayDeque<>();
     }
 
