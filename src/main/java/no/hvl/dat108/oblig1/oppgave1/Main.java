@@ -8,5 +8,7 @@ public class Main {
 
         new Thread(printer).start();
         new Thread(dialog).start();
+
+        System.out.println("TEST FOR ROGER :*");
     }
 }
