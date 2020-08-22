@@ -8,7 +8,5 @@ public class Main {
 
         new Thread(printer).start();
         new Thread(dialog).start();
-
-
     }
 }
