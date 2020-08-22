@@ -10,7 +10,7 @@ public class Rutsjebane {
         this.burgere = new ArrayDeque<>();
     }
 
-    public void add(Burger burger) {
+    public synchronized void add(Burger burger) {
         burgere.add(burger);
         System.out.println(Thread.currentThread().getName() + " made a burger.");
     }
