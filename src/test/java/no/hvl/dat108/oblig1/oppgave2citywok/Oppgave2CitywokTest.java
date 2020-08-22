@@ -7,7 +7,7 @@ class Oppgave2CitywokTest {
     @Test
     void main() {
 
-        Main.main(null);
+        App.main(null);
 //        var t = new Thread(() -> {
 //            Main.main(null);
 //            try {

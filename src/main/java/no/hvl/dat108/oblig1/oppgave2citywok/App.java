@@ -11,7 +11,7 @@ import java.util.Locale;
 
 import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.currentTime;
 
-public class Main {
+public class App {
 
     private static final int ANTALL_KOKKER = 3;
     private static final int ANTALL_SERVITOERER = 2;

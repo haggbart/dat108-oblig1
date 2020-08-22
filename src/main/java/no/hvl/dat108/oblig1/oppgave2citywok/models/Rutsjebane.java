@@ -5,7 +5,17 @@ import java.util.Queue;
 
 import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.currentTime;
 
-public final class Rutsjebane {
+
+// singleton class
+public class Rutsjebane {
+
+    private static class Loc {
+        static final String TOM_RUTSJEBANE = "[%s] ### %s vil ta en hamburger, men rutsjebanen er tom. Venter! ###\n";
+        static final String FULL_RUTSJEBANE = "[%s] ### %s er klar med en hamburger, men rutsjebanen er full. Venter! ###\n";
+        static final String LEGGTIL = "[%s] %s legger på hamburger(%d) => %s\n";
+        static final String FJERN = "[%s] %s tar av hamburger(%d) <= %s\n";
+        static final String STENGER = "[%s] ### Hamburger-sjappen stenger. Tar ikke imot flere bestillinger... ###\n";
+    }
 
     private final static Rutsjebane instance = new Rutsjebane();
     private final static int CAPACITY = 5;
@@ -23,16 +33,14 @@ public final class Rutsjebane {
 
     public synchronized void add(Kokk kokk, Hamburger hamburger) {
         if (hamburgere.size() >= CAPACITY) {
+            System.out.printf(Loc.FULL_RUTSJEBANE, currentTime(), kokk);
             try {
-                System.out.printf("[%s] ### %s er klar med en hamburger, men rutsjebanen er full. Venter! ###\n",
-                        currentTime(), kokk);
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
-        System.out.printf("[%s] %s legger på hamburger(%d) => %s\n",
-                currentTime(), kokk, hamburger.getId(), this);
+        System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger.getId(), this);
         hamburgere.add(hamburger);
         if (hamburgere.size() == 1)
             notify(); // vekker den første tråden som venter (det legges kun til 1 burger)
@@ -41,9 +49,8 @@ public final class Rutsjebane {
     public synchronized void take(Servitoer servitoer) {
         if (hamburgere.isEmpty()) {
             if (!mottarOrdre) return;
+            System.out.printf(Loc.TOM_RUTSJEBANE, currentTime(), servitoer);
             try {
-                System.out.printf("[%s] ### %s vil ta en hamburger, men rutsjebanen er tom. Venter! ###\n",
-                        currentTime(), servitoer);
                 wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -51,15 +58,12 @@ public final class Rutsjebane {
         }
         Hamburger hamburger = hamburgere.remove();
 
-        System.out.printf("[%s] %s tar av hamburger(%d) <= %s\n",
-                currentTime(), servitoer, hamburger.getId(), this);
+        System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger.getId(), this);
         if (hamburgere.size() == CAPACITY - 1) notify();
     }
 
-
-
     public synchronized void steng() {
-        System.out.printf("[%s] ### Hamburger-sjappen stenger. Tar ikke imot flere bestillinger... ###\n", currentTime());
+        System.out.printf(Loc.STENGER, currentTime());
         mottarOrdre = false;
     }
 
