@@ -4,22 +4,26 @@ public class Rutsjebane {
 
     private int bak;
     private Burger[] bane;
+    private Burger burger;
 
     public Rutsjebane() {
         bane = new Burger[5];
         bak = 0;
     }
 
-    public void leggTil(Burger burger) throws InterruptedException {
+    public synchronized void leggTil(Burger burger) throws InterruptedException {
 
         if(bak == 5) {
-            Thread.currentThread().join();
+            Thread.currentThread().wait();
         }
         bane[bak] = burger;
         bak++;
+        System.out.print(Thread.currentThread().getName() + " legger til en " + burger.getType() + " => ");
+        notify();
+
     }
 
-    public Burger hentBurger() throws InterruptedException {
+    public synchronized Burger hentBurger() throws InterruptedException {
 
         if(bak == 0) {
             Thread.currentThread().join();
@@ -31,6 +35,9 @@ public class Rutsjebane {
             bane[i] = bane[i+1];
         }
         bane[bak] = null;
+        System.out.print(Thread.currentThread().getName() + " henter ut en " + ut.getType() + " <= ");
+
+
         return ut;
     }
 
@@ -38,11 +45,13 @@ public class Rutsjebane {
         return bane[0].getType();
     }
 
-    public boolean erFull() {
+    public synchronized boolean erFull() {
         return bak == 5;
     }
 
-    public void printBane() {
+    public synchronized boolean erTom() { return bane[0] == null; }
+
+    public synchronized void printBane() {
 
         System.out.print("Burgere i banen: ");
 

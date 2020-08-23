@@ -14,24 +14,18 @@ public class Main {
 
         Rutsjebane bane = new Rutsjebane();
 
-        Kokk kokk1 = new Kokk(bane);
-        Kokk kokk2 = new Kokk(bane);
+        Kokk kokk1 = new Kokk(bane, "Mads");
+        Kokk kokk2 = new Kokk(bane, "Kristin");
+        Kokk kokk3 = new Kokk(bane, "Roger");
+        Servitoer serv1 = new Servitoer(bane, "Preben");
+        Servitoer serv2 = new Servitoer(bane, "Finleif");
 
         kokk1.start();
         kokk2.start();
+        kokk3.start();
+        serv1.start();
+        serv2.start();
 
-//        bane.leggTil(test);
-//        bane.leggTil(test2);
-//        bane.leggTil(test3);
-//        bane.leggTil(test4);
-//        bane.leggTil(test5);
-//        bane.leggTil(test6);
-
-//        bane.printBane();
-//        System.out.println();
-//        bane.hentBurger();
-//
-//        bane.printBane();
 
 
 
