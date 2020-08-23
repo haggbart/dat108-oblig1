@@ -13,20 +13,23 @@ public class Rutsjebane {
 
     public synchronized void leggTil(Burger burger) throws InterruptedException {
 
-        if(bak == 5) {
-            Thread.currentThread().wait();
+        while (erFull()) {
+            System.out.println(Thread.currentThread().getName() + " venter på å avlevere burger");
+            wait();
         }
         bane[bak] = burger;
         bak++;
         System.out.print(Thread.currentThread().getName() + " legger til en " + burger.getType() + " => ");
-        notify();
+        if (bak == 1)
+            notify();
 
     }
 
     public synchronized Burger hentBurger() throws InterruptedException {
 
-        if(bak == 0) {
-            Thread.currentThread().join();
+        while (erTom()) {
+            System.out.println(Thread.currentThread().getName() + " venter på å hente burger");
+            wait();
         }
         Burger ut = bane[0];
         bak--;
@@ -36,8 +39,8 @@ public class Rutsjebane {
         }
         bane[bak] = null;
         System.out.print(Thread.currentThread().getName() + " henter ut en " + ut.getType() + " <= ");
-
-
+        if (bak == 4)
+            notify();
         return ut;
     }
 
