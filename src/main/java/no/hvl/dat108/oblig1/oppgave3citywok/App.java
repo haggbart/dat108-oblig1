@@ -62,6 +62,4 @@ public class App {
         }
         System.out.printf("[%s] ### Hamburger-sjappen er stengt! ###\n", currentTime());
     }
-
-
 }

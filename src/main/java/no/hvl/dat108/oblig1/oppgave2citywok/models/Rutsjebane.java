@@ -32,7 +32,7 @@ public class Rutsjebane {
     }
 
     public synchronized void add(Kokk kokk, Hamburger hamburger) {
-        if (hamburgere.size() >= CAPACITY) {
+        while (hamburgere.size() == CAPACITY) {
             System.out.printf(Loc.FULL_RUTSJEBANE, currentTime(), kokk);
             try {
                 wait();
@@ -47,7 +47,7 @@ public class Rutsjebane {
     }
 
     public synchronized void take(Servitoer servitoer) {
-        if (hamburgere.isEmpty()) {
+        while (hamburgere.isEmpty()) {
             if (!mottarOrdre) return;
             System.out.printf(Loc.TOM_RUTSJEBANE, currentTime(), servitoer);
             try {

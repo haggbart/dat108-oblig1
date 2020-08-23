@@ -48,14 +48,12 @@ public class Rutsjebane {
             if (!mottarOrdre) return;
             System.out.printf(Loc.TOM_RUTSJEBANE, currentTime(), servitoer);
         }
-        Hamburger hamburger = null;
         try {
-            hamburger = hamburgere.take();
+            Hamburger hamburger = hamburgere.take();
+            System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger.getId(), this);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger.getId(), this);
     }
 
     public void steng() {
