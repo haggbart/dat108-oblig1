@@ -1,9 +1,9 @@
-package no.hvl.dat108.oblig1.oppgave2citywok.models;
+package no.hvl.dat108.oblig1.oppgave3citywok.models;
 
-import java.util.ArrayDeque;
-import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.BlockingQueue;
 
-import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.currentTime;
+import static no.hvl.dat108.oblig1.oppgave3citywok.helpers.Utility.currentTime;
 
 
 // singleton class
@@ -21,45 +21,41 @@ public class Rutsjebane {
     private final static int CAPACITY = 5;
     private boolean mottarOrdre = true;
 
-    private final Queue<Hamburger> hamburgere;
+    private final BlockingQueue<Hamburger> hamburgere;
 
     private Rutsjebane() {
-        this.hamburgere = new ArrayDeque<>();
+        this.hamburgere = new ArrayBlockingQueue<>(5);
     }
 
     public static Rutsjebane getInstance() {
         return instance;
     }
 
-    public synchronized void add(Kokk kokk, Hamburger hamburger) {
+    public void add(Kokk kokk, Hamburger hamburger) {
         if (hamburgere.size() >= CAPACITY) {
             System.out.printf(Loc.FULL_RUTSJEBANE, currentTime(), kokk);
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
         System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger.getId(), this);
-        hamburgere.add(hamburger);
-        if (hamburgere.size() == 1)
-            notify(); // vekker den første tråden som venter (det legges kun til 1 burger)
+        try {
+            hamburgere.put(hamburger);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
-    public synchronized void take(Servitoer servitoer) {
+    public void take(Servitoer servitoer) {
         if (hamburgere.isEmpty()) {
             if (!mottarOrdre) return;
             System.out.printf(Loc.TOM_RUTSJEBANE, currentTime(), servitoer);
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         }
-        Hamburger hamburger = hamburgere.remove();
+        Hamburger hamburger = null;
+        try {
+            hamburger = hamburgere.take();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger.getId(), this);
-        if (hamburgere.size() == CAPACITY - 1) notify();
     }
 
     public void steng() {
