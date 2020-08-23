@@ -2,7 +2,6 @@ package no.hvl.dat108.oblig1.oppgave2citywok.models;
 
 public class Servitoer extends Ansatt implements Runnable {
 
-
     public Servitoer(int id, String navn) {
         super(id, navn);
     }
@@ -10,7 +9,7 @@ public class Servitoer extends Ansatt implements Runnable {
     @Override
     public void run() {
 
-        while (true) {
+        while (rutsjebane.mottarOrdre() || !rutsjebane.isEmpty()) {
 
             synchronized (this) {
                 try {

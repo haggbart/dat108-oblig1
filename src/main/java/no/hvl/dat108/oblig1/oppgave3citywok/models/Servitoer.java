@@ -1,14 +1,15 @@
-package no.hvl.dat108.oblig1.oppgave2citywok.models;
+package no.hvl.dat108.oblig1.oppgave3citywok.models;
 
-public class Kokk extends Ansatt implements Runnable {
+public class Servitoer extends Ansatt implements Runnable {
 
-    public Kokk(int id, String navn) {
+    public Servitoer(int id, String navn) {
         super(id, navn);
     }
 
     @Override
     public void run() {
-        while (rutsjebane.mottarOrdre()) {
+
+        while (rutsjebane.mottarOrdre() || !rutsjebane.isEmpty()) {
 
             synchronized (this) {
                 try {
@@ -16,7 +17,7 @@ public class Kokk extends Ansatt implements Runnable {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                rutsjebane.add(this, new Hamburger());
+                rutsjebane.take(this);
             }
         }
     }

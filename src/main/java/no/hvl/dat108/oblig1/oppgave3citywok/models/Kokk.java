@@ -1,4 +1,4 @@
-package no.hvl.dat108.oblig1.oppgave2citywok.models;
+package no.hvl.dat108.oblig1.oppgave3citywok.models;
 
 public class Kokk extends Ansatt implements Runnable {
 
