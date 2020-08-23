@@ -23,11 +23,7 @@ public class Kokk extends Thread {
 
             Burger burger = lagBurger();
             try {
-                this.sleep(random.nextInt(4000) + 2000);
-                if (rutsjebane.erFull()) {
-                    System.out.println(Thread.currentThread().getName() + " venter på å avlevere burger");
-                    wait();
-                }
+                Thread.sleep(random.nextInt(4000) + 2000);
                 rutsjebane.leggTil(burger);
 
             } catch (InterruptedException e) {
@@ -36,8 +32,6 @@ public class Kokk extends Thread {
 
             rutsjebane.printBane();
             System.out.println();
-
-
         }
 
     }

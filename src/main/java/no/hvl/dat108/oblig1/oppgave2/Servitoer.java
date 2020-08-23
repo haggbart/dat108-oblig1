@@ -21,10 +21,6 @@ public class Servitoer extends Thread {
 
             try {
                 this.sleep(random.nextInt(4000) + 2000);
-                if (rutsjebane.erTom()) {
-                    System.out.println(Thread.currentThread().getName() + " venter på å hente burger");
-                    wait();
-                }
                 rutsjebane.hentBurger();
 
             } catch (InterruptedException e) {
