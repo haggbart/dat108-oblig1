@@ -1,9 +1,8 @@
-
 package no.hvl.dat108.oblig1.oppgave1;
 
 import org.junit.jupiter.api.Test;
 
-class MainTest {
+class Oppgave1Test {
 
     @Test
     void success() {
@@ -12,15 +11,12 @@ class MainTest {
 //    @Test
 //    void main() {
 //
-//        Main.main(null);
-//
 //        var t = new Thread(() -> {
+//            Main.main(null);
 //            try {
 //                Thread.sleep(4000);
 //            } catch (InterruptedException e) {
 //                fail();
-//            } catch (Exception e) {
-//                e.printStackTrace();
 //            }
 //        });
 //
