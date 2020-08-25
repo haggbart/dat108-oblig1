@@ -11,15 +11,15 @@ public abstract class Ansatt {
     protected static final Rutsjebane rutsjebane = Rutsjebane.getInstance();
 
     private final int id;
-    private final String navn;
+    private final String tittel;
 
-    public Ansatt(int id, String navn) {
+    public Ansatt(int id) {
         this.id = id;
-        this.navn = getNextColor() + navn + resetColor();
+        this.tittel = getNextColor() + (this instanceof Kokk ? "Kokk" : "Servitør") + resetColor();
     }
 
     @Override
     public String toString() {
-        return String.format("%s(%s)", navn, id);
+        return String.format("%s(%s)", tittel, id);
     }
 }

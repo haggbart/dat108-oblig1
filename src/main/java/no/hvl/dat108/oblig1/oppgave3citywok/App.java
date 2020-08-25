@@ -1,6 +1,5 @@
 package no.hvl.dat108.oblig1.oppgave3citywok;
 
-import com.github.javafaker.Faker;
 import no.hvl.dat108.oblig1.oppgave3citywok.models.Kokk;
 import no.hvl.dat108.oblig1.oppgave3citywok.models.Rutsjebane;
 import no.hvl.dat108.oblig1.oppgave3citywok.models.Servitoer;
@@ -23,18 +22,17 @@ public class App {
 
     public static void main(String[] args) {
 
-        Faker faker = new Faker(LOCALE);
 
         // inititere kokker
         for (int id = 1; id <= ANTALL_KOKKER; id++) {
-            var thread = new Thread(new Kokk(id, faker.name().firstName()));
+            var thread = new Thread(new Kokk(id));
             threads.add(thread);
             thread.start();
         }
 
         // initiere servitører
         for (int id = 1; id <= ANTALL_SERVITOERER; id++) {
-            var thread = new Thread(new Servitoer(id, faker.name().firstName()));
+            var thread = new Thread(new Servitoer(id));
             threads.add(thread);
             thread.start();
         }
