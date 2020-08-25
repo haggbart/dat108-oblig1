@@ -12,4 +12,9 @@ public class Hamburger {
     public int getId() {
         return id;
     }
+
+    @Override
+    public String toString() {
+        return String.format("(%s)", id);
+    }
 }

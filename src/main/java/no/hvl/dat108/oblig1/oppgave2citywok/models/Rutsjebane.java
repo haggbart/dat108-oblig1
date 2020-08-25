@@ -12,8 +12,8 @@ public class Rutsjebane {
     private static class Loc {
         static final String TOM_RUTSJEBANE = "[%s] ### %s vil ta en hamburger, men rutsjebanen er tom. Venter! ###\n";
         static final String FULL_RUTSJEBANE = "[%s] ### %s er klar med en hamburger, men rutsjebanen er full. Venter! ###\n";
-        static final String LEGGTIL = "[%s] %s legger på hamburger(%d) => %s\n";
-        static final String FJERN = "[%s] %s tar av hamburger(%d) <= %s\n";
+        static final String LEGGTIL = "[%s] %s legger på hamburger%s => %s\n";
+        static final String FJERN = "[%s] %s tar av hamburger%s <= %s\n";
         static final String STENGER = "[%s] ### Hamburger-sjappen stenger. Tar ikke imot flere bestillinger... ###\n";
     }
 
@@ -40,7 +40,7 @@ public class Rutsjebane {
                 e.printStackTrace();
             }
         }
-        System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger.getId(), this);
+        System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, this);
         hamburgere.add(hamburger);
         if (hamburgere.size() == 1)
             notify(); // vekker den første tråden som venter (det legges kun til 1 burger)
@@ -58,7 +58,7 @@ public class Rutsjebane {
         }
         Hamburger hamburger = hamburgere.remove();
 
-        System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger.getId(), this);
+        System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger, this);
         if (hamburgere.size() == CAPACITY - 1) notify();
     }
 
@@ -79,7 +79,7 @@ public class Rutsjebane {
     public String toString() {
         var sb = new StringBuilder("[");
         for (Hamburger hamburger : hamburgere) {
-            sb.append('(').append(hamburger.getId()).append("), ");
+            sb.append(hamburger).append(", ");
         }
         if (!hamburgere.isEmpty())
             sb.setLength(sb.length() - 2);
