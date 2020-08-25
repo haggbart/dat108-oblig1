@@ -6,7 +6,6 @@ import no.hvl.dat108.oblig1.oppgave2citywok.models.Servitoer;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.currentTime;
 
@@ -16,7 +15,6 @@ public class App {
     private static final int ANTALL_SERVITOERER = 2;
     private static final int AAPNINGSTID_SEKUNDER = 30;
 
-    private static final Locale LOCALE = new Locale("nb-no");
     private static final List<Thread> threads = new ArrayList<>(ANTALL_KOKKER + ANTALL_SERVITOERER);
 
 
