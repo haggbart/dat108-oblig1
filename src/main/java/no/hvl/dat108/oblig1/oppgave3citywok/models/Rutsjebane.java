@@ -32,12 +32,17 @@ public class Rutsjebane {
     }
 
     public void add(Kokk kokk, Hamburger hamburger) {
-        if (hamburgere.size() >= CAPACITY) {
+        if (hamburgere.size() == CAPACITY) {
             System.out.printf(Loc.FULL_RUTSJEBANE, currentTime(), kokk);
         }
-        System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, this);
         try {
             hamburgere.put(hamburger);
+            /*
+            Burde egentlig hatt en lock her uansett for å garantere rekkefølge på print,
+            av hensyn til oppgave er det lagt til en sleep her. Ellers blir det litt tilfeldig hva som printes først.
+             */
+            Thread.sleep(100);
+            System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, this);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -51,6 +56,7 @@ public class Rutsjebane {
         try {
             Hamburger hamburger = hamburgere.take();
             System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger, this);
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
