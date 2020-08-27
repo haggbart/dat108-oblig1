@@ -36,13 +36,14 @@ public class Rutsjebane {
             System.out.printf(Loc.FULL_RUTSJEBANE, currentTime(), kokk);
         }
         try {
+            String burgere = this.toString();
             hamburgere.put(hamburger);
             /*
             Burde egentlig hatt en lock her uansett for å garantere rekkefølge på print,
-            av hensyn til oppgave er det lagt til en sleep her. Ellers blir det litt tilfeldig hva som printes først.
+            av hensyn til oppgave er det lagt til en sleep. Ellers blir det litt tilfeldig hva som printes først.
              */
             Thread.sleep(100);
-            System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, this);
+            System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, burgere);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
