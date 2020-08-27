@@ -24,7 +24,7 @@ public class Rutsjebane {
     private final BlockingQueue<Hamburger> hamburgere;
 
     private Rutsjebane() {
-        this.hamburgere = new ArrayBlockingQueue<>(5);
+        this.hamburgere = new ArrayBlockingQueue<>(CAPACITY);
     }
 
     public static Rutsjebane getInstance() {
