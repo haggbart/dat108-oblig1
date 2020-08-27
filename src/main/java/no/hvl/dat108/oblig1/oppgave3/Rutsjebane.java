@@ -2,14 +2,11 @@ package no.hvl.dat108.oblig1.oppgave3;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.locks.ReentrantLock;
 
 public class Rutsjebane {
     private final static int storleik = 5;
     private final static Rutsjebane bane = new Rutsjebane();
     private final BlockingQueue<Burger> burgers;
-
-    private ReentrantLock venteliste;
 
     private Rutsjebane() {
         this.burgers = new ArrayBlockingQueue<>(storleik);
