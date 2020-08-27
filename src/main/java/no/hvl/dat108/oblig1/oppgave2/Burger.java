@@ -3,9 +3,12 @@ package no.hvl.dat108.oblig1.oppgave2;
 public class Burger {
 
     private int typenummer;
+    private static int burgernummer = 0;
+    private int id;
 
     Burger() {
         this.typenummer = (int)(Math.random() * 3);
+        id = ++burgernummer;
     }
 
     Burger(int typenummer) {
@@ -15,6 +18,11 @@ public class Burger {
     public int getTypenummer() {
         return typenummer;
     }
+
+    public int getId() {
+        return id;
+    }
+
 
     public String getType() {
         if (typenummer == 0) {

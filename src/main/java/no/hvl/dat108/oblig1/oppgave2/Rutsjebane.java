@@ -19,7 +19,7 @@ public class Rutsjebane {
         }
         bane[bak] = burger;
         bak++;
-        System.out.print(Thread.currentThread().getName() + " legger til en " + burger.getType() + " => ");
+        System.out.print(Thread.currentThread().getName() + " legger til en [" +burger.getId()+"]" + burger.getType() + " => ");
         if (bak == 1)
             notify();
 
@@ -38,7 +38,7 @@ public class Rutsjebane {
             bane[i] = bane[i+1];
         }
         bane[bak] = null;
-        System.out.print(Thread.currentThread().getName() + " henter ut en " + ut.getType() + " <= ");
+        System.out.print(Thread.currentThread().getName() + " henter ut en [" + ut.getId() + "]" + ut.getType() + " <= ");
         if (bak == 4)
             notify();
         return ut;
@@ -60,7 +60,7 @@ public class Rutsjebane {
 
         for(int i = 0; i < bak; i++) {
 
-            System.out.print(bane[i].getType() + " ");
+            System.out.print("[" + bane[i].getId() + "]" +bane[i].getType() + " ");
         }
     }
 

@@ -22,6 +22,7 @@ public class Kokk extends Thread {
 
 
             Burger burger = lagBurger();
+
             try {
                 Thread.sleep(random.nextInt(4000) + 2000);
                 rutsjebane.leggTil(burger);
