@@ -5,8 +5,7 @@ public class Hamburger {
     private final int id;
 
     public Hamburger() {
-        counter++;
-        id = counter;
+        id = ++counter;
     }
 
     @Override
