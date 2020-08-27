@@ -39,8 +39,8 @@ public class Rutsjebane {
             String burgere = this.toString();
             hamburgere.put(hamburger);
             /*
-            Burde egentlig hatt en lock her uansett for å garantere rekkefølge på print,
-            av hensyn til oppgave er det lagt til en sleep. Ellers blir det litt tilfeldig hva som printes først.
+            Burde hatt en lock her for å garantere rekkefølge på print,
+            av hensyn til oppgave er det lagt til en sleep i stedet. Ellers blir det tilfeldig hva som printes først.
              */
             Thread.sleep(100);
             System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, burgere);

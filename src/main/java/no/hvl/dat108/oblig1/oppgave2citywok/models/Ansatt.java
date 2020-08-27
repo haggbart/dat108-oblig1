@@ -20,6 +20,14 @@ public abstract class Ansatt {
         this.tittel = getNextColor() + (this instanceof Kokk ? "Kokk" : "Servitør") + resetColor();
     }
 
+    public void work() {
+        try {
+            Thread.sleep(random.nextInt(4000) + 2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
     @Override
     public String toString() {
         return String.format("%s(%s)", tittel, id);
