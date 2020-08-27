@@ -16,8 +16,8 @@ public class Main {
 
         kokk1.start();
         kokk2.start();
-//        kokk3.start();
-//        serv1.start();
+        kokk3.start();
+        serv1.start();
         serv2.start();
 
 

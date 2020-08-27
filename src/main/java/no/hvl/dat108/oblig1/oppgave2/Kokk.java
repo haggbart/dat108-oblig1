@@ -21,11 +21,11 @@ public class Kokk extends Thread {
         while(true) {
 
 
-            Burger burger = lagBurger();
+          //  Burger burger = lagBurger();
 
             try {
                 Thread.sleep(random.nextInt(4000) + 2000);
-                rutsjebane.leggTil(burger);
+                rutsjebane.leggTil(new Burger());
 
             } catch (InterruptedException e) {
                 e.printStackTrace();
