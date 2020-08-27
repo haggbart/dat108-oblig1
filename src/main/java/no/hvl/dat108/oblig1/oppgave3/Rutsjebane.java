@@ -2,11 +2,14 @@ package no.hvl.dat108.oblig1.oppgave3;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Rutsjebane {
     private final static int storleik = 5;
     private final static Rutsjebane bane = new Rutsjebane();
     private final BlockingQueue<Burger> burgers;
+
+    private ReentrantLock venteliste;
 
     private Rutsjebane() {
         this.burgers = new ArrayBlockingQueue<>(storleik);
@@ -25,7 +28,7 @@ public class Rutsjebane {
         try {
             burgers.put(burger);
             synchronized (burgers) {
-                System.out.print(Thread.currentThread().getName() + " legger på burger. " + burger.getNumber());
+                System.out.print(Thread.currentThread().getName() + " legger på burger " + burger.getBurgerID() + ".");
                 printBane();
             }
         } catch (InterruptedException e) {
@@ -33,7 +36,7 @@ public class Rutsjebane {
         }
     }
 
-    public Burger hentBurger() {
+    public void hentBurger() {
         if (burgers.size() == 0) {
             System.out.println(Thread.currentThread().getName() + " vil ta ein burger, men rutsjebanen er tom. Venter!");
         }
@@ -41,21 +44,19 @@ public class Rutsjebane {
         try {
             Burger ut = burgers.take();
             synchronized (burgers) {
-                System.out.print(Thread.currentThread().getName() + " tar av burger. " + ut.getNumber());
+                System.out.print(Thread.currentThread().getName() + " tar av burger " + ut.getBurgerID() + ".");
                 printBane();
             }
-            return ut;
+
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-        return null;
     }
 
     public void printBane() {
         System.out.print(" => [ ");
         for (Burger b : burgers) {
-            System.out.print(b.getNumber() + " ");
+            System.out.print(b.getBurgerID() + " ");
         }
         System.out.println("]");
     }

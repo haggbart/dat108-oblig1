@@ -1,6 +1,6 @@
 package no.hvl.dat108.oblig1.oppgave2;
 
-public class Main {
+public class Main2 {
     public static void main(String[] args) {
         Rutsjebane bane = new Rutsjebane();
 
