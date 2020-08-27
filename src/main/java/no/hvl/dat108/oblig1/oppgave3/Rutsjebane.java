@@ -3,7 +3,7 @@ package no.hvl.dat108.oblig1.oppgave3;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
-public class Rutsjebane  {
+public class Rutsjebane {
     private final static int storleik = 5;
     private final static Rutsjebane bane = new Rutsjebane();
     private final BlockingQueue<Burger> burgers;
@@ -18,35 +18,37 @@ public class Rutsjebane  {
 
 
     public void leggTil(Burger burger) {
-        if ( storleik == burgers.size() ) {
+        if (storleik == burgers.size()) {
             System.out.println(Thread.currentThread().getName() + " er klar med ein burger, men rutsjebanen er full. Venter!");
         }
-        synchronized (burgers) {
-            try {
-                burgers.put(burger);
+
+        try {
+            burgers.put(burger);
+            synchronized (burgers) {
                 System.out.print(Thread.currentThread().getName() + " legger på burger. " + burger.getNumber());
                 printBane();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
-
     }
 
     public Burger hentBurger() {
         if (burgers.size() == 0) {
             System.out.println(Thread.currentThread().getName() + " vil ta ein burger, men rutsjebanen er tom. Venter!");
         }
-        synchronized (burgers) {
-            try {
-                Burger ut = burgers.take();
+
+        try {
+            Burger ut = burgers.take();
+            synchronized (burgers) {
                 System.out.print(Thread.currentThread().getName() + " tar av burger. " + ut.getNumber());
                 printBane();
-                return ut;
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
+            return ut;
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
+
         return null;
     }
 
