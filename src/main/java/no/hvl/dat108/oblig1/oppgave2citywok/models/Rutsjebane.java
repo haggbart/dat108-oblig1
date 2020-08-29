@@ -31,7 +31,7 @@ public class Rutsjebane {
         return instance;
     }
 
-    public synchronized void add(Kokk kokk, Hamburger hamburger) {
+    public synchronized void leggPaaBurger(Kokk kokk, Hamburger hamburger) {
         while (hamburgere.size() == CAPACITY) {
             System.out.printf(Loc.FULL_RUTSJEBANE, currentTime(), kokk);
             try {
@@ -40,13 +40,13 @@ public class Rutsjebane {
                 e.printStackTrace();
             }
         }
-        System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, this);
+        System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, hamburgere);
         hamburgere.add(hamburger);
         if (hamburgere.size() == 1)
             notify(); // vekker den første tråden som venter (det legges kun til 1 burger)
     }
 
-    public synchronized void take(Servitoer servitoer) {
+    public synchronized void taAvBurger(Servitoer servitoer) {
         while (hamburgere.isEmpty()) {
             if (!mottarOrdre) return;
             System.out.printf(Loc.TOM_RUTSJEBANE, currentTime(), servitoer);
@@ -58,7 +58,7 @@ public class Rutsjebane {
         }
         Hamburger hamburger = hamburgere.remove();
 
-        System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger, this);
+        System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger, hamburgere);
         if (hamburgere.size() == CAPACITY - 1) notify();
     }
 
@@ -73,17 +73,5 @@ public class Rutsjebane {
 
     public boolean isEmpty() {
         return hamburgere.isEmpty();
-    }
-
-    @Override
-    public String toString() {
-        var sb = new StringBuilder("[");
-        for (Hamburger hamburger : hamburgere) {
-            sb.append(hamburger).append(", ");
-        }
-        if (!hamburgere.isEmpty())
-            sb.setLength(sb.length() - 2);
-        sb.append(']');
-        return sb.toString();
     }
 }
