@@ -29,7 +29,7 @@ public class Rutsjebane {
         return instance;
     }
 
-    public void add(Kokk kokk, Hamburger hamburger) {
+    public void leggPaaBurger(Kokk kokk, Hamburger hamburger) {
         try {
             hamburgere.put(hamburger);
             System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, hamburgere);
@@ -38,7 +38,7 @@ public class Rutsjebane {
         }
     }
 
-    public void take(Servitoer servitoer) {
+    public void taAvBurger(Servitoer servitoer) {
         try {
             Hamburger hamburger = hamburgere.take();
             System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger, hamburgere);

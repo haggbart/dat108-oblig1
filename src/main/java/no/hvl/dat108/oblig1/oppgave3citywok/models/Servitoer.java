@@ -10,7 +10,7 @@ public class Servitoer extends Ansatt implements Runnable {
     public void run() {
         while (rutsjebane.mottarOrdre() || !rutsjebane.isEmpty()) {
             work();
-            rutsjebane.take(this);
+            rutsjebane.taAvBurger(this);
         }
     }
 }
