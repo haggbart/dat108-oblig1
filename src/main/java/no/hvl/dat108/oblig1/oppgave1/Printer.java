@@ -27,7 +27,7 @@ public class Printer implements Runnable {
 
     public synchronized void quit() {
         isRunning = false;
-        notify(); // notifies the first thread that has a lock on this object
+        notify(); // notifies the thread that has a lock on this object
     }
 
     public void setMessage(String message) {

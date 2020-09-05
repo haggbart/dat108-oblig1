@@ -9,7 +9,6 @@ public class Kokk extends Ansatt implements Runnable {
     @Override
     public void run() {
         while (rutsjebane.mottarOrdre()) {
-
             work();
             rutsjebane.add(this, new Hamburger());
         }

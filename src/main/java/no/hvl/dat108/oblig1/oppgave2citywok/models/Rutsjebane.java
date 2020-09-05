@@ -24,7 +24,7 @@ public class Rutsjebane {
     private final Queue<Hamburger> hamburgere;
 
     private Rutsjebane() {
-        this.hamburgere = new ArrayDeque<>();
+        this.hamburgere = new ArrayDeque<>(CAPACITY);
     }
 
     public static Rutsjebane getInstance() {
@@ -32,7 +32,7 @@ public class Rutsjebane {
     }
 
     public synchronized void leggPaaBurger(Kokk kokk, Hamburger hamburger) {
-        while (hamburgere.size() == CAPACITY) {
+        while (isFull()) {
             System.out.printf(Loc.FULL_RUTSJEBANE, currentTime(), kokk);
             try {
                 wait();
@@ -42,8 +42,7 @@ public class Rutsjebane {
         }
         System.out.printf(Loc.LEGGTIL, currentTime(), kokk, hamburger, hamburgere);
         hamburgere.add(hamburger);
-        if (hamburgere.size() == 1)
-            notify(); // vekker den første tråden som venter (det legges kun til 1 burger)
+        if (hamburgere.size() == 1) notify(); // vekker en tråd som venter (det legges kun til 1 burger)
     }
 
     public synchronized void taAvBurger(Servitoer servitoer) {
@@ -59,7 +58,7 @@ public class Rutsjebane {
         Hamburger hamburger = hamburgere.remove();
 
         System.out.printf(Loc.FJERN, currentTime(), servitoer, hamburger, hamburgere);
-        if (hamburgere.size() == CAPACITY - 1) notify();
+        if (hamburgere.size() == CAPACITY - 1) notify(); // vekker en tråd som venter (det fjernes kun 1 burger)
     }
 
     public void steng() {
@@ -73,5 +72,9 @@ public class Rutsjebane {
 
     public boolean isEmpty() {
         return hamburgere.isEmpty();
+    }
+
+    public boolean isFull() {
+        return hamburgere.size() == CAPACITY;
     }
 }
