@@ -19,7 +19,7 @@ public class Dialog implements Runnable {
             printer.setMessage(input);
 
             if(input.toString().equalsIgnoreCase("quit")) {
-                input = "lol";
+
                 System.out.println("Shutting down...");
                 printer.quit();
                 return;
