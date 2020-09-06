@@ -28,6 +28,5 @@ public class Dialog implements Runnable {
         }
         System.out.println("Shutting down...");
         printer.quit();
-
     }
 }

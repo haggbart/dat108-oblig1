@@ -8,17 +8,9 @@ public class Servitoer extends Ansatt implements Runnable {
 
     @Override
     public void run() {
-
         while (rutsjebane.mottarOrdre() || !rutsjebane.isEmpty()) {
-
-            synchronized (this) {
-                try {
-                    wait(random.nextInt(4000) + 2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                rutsjebane.take(this);
-            }
+            work();
+            rutsjebane.taAvBurger(this);
         }
     }
 }

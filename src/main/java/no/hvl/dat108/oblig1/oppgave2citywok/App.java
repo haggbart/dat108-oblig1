@@ -20,23 +20,28 @@ public class App {
 
     public static void main(String[] args) {
 
+        initalizeKokker();
 
-        // inititere kokker
+        initalizeServitoerer();
+
+        ventTilStengetid();
+        gjoerFerdigBestillinger();
+    }
+
+    private static void initalizeKokker() {
         for (int id = 1; id <= ANTALL_KOKKER; id++) {
             var thread = new Thread(new Kokk(id));
             threads.add(thread);
             thread.start();
         }
+    }
 
-        // initiere servitører
+    private static void initalizeServitoerer() {
         for (int id = 1; id <= ANTALL_SERVITOERER; id++) {
             var thread = new Thread(new Servitoer(id));
             threads.add(thread);
             thread.start();
         }
-
-        ventTilStengetid();
-        gjoerFerdigBestillinger();
     }
 
     private static void ventTilStengetid() {
