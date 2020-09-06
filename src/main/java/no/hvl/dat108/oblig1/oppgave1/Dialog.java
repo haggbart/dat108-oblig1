@@ -12,11 +12,19 @@ public class Dialog implements Runnable {
 
     @Override
     public void run() {
-        String DIALOG = "Skriv inn din melding, trykk cancel for å avslutte.";
+        String DIALOG = "Skriv inn din melding, trykk cancel eller skriv 'quit' for å avslutte.";
         String input;
 
         while ((input = showInputDialog(DIALOG)) != null) {
             printer.setMessage(input);
+
+            if(input.toString().equalsIgnoreCase("quit")) {
+
+                System.out.println("Shutting down...");
+                printer.quit();
+                return;
+
+            }
         }
         System.out.println("Shutting down...");
         printer.quit();

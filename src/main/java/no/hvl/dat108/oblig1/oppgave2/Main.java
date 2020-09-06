@@ -5,12 +5,6 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
 
 
-        Burger test = new Burger();
-        Burger test2 = new Burger();
-        Burger test3 = new Burger();
-        Burger test4 = new Burger();
-        Burger test5 = new Burger();
-        Burger test6 = new Burger();
 
         Rutsjebane bane = new Rutsjebane();
 

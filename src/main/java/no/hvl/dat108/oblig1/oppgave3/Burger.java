@@ -1,4 +1,4 @@
-package no.hvl.dat108.oblig1.oppgave2;
+package no.hvl.dat108.oblig1.oppgave3;
 
 public class Burger {
 
@@ -36,5 +36,9 @@ public class Burger {
         }
 
         else return "Mystisk burger";
+    }
+    @Override
+    public String toString() {
+        return ("[" + id + "]" + this.getType());
     }
 }
