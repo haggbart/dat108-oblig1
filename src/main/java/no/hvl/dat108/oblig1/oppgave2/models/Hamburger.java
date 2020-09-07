@@ -1,4 +1,4 @@
-package no.hvl.dat108.oblig1.oppgave3citywok.models;
+package no.hvl.dat108.oblig1.oppgave2.models;
 
 public class Hamburger {
     private static int counter;

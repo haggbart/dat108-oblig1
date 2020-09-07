@@ -1,9 +1,9 @@
-package no.hvl.dat108.oblig1.oppgave3citywok.models;
+package no.hvl.dat108.oblig1.oppgave3.models;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
-import static no.hvl.dat108.oblig1.oppgave3citywok.helpers.Utility.currentTime;
+import static no.hvl.dat108.oblig1.oppgave3.helpers.Utility.currentTime;
 
 
 // singleton class

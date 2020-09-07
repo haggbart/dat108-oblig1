@@ -1,10 +1,10 @@
-package no.hvl.dat108.oblig1.oppgave2citywok.models;
+package no.hvl.dat108.oblig1.oppgave2.models;
 
 
 import java.util.Random;
 
-import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.getNextColor;
-import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.resetColor;
+import static no.hvl.dat108.oblig1.oppgave2.helpers.Utility.getNextColor;
+import static no.hvl.dat108.oblig1.oppgave2.helpers.Utility.resetColor;
 
 
 public abstract class Ansatt {

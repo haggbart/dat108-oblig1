@@ -1,9 +1,9 @@
-package no.hvl.dat108.oblig1.oppgave2citywok.models;
+package no.hvl.dat108.oblig1.oppgave2.models;
 
 import java.util.ArrayDeque;
 import java.util.Queue;
 
-import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.currentTime;
+import static no.hvl.dat108.oblig1.oppgave2.helpers.Utility.currentTime;
 
 
 // singleton class

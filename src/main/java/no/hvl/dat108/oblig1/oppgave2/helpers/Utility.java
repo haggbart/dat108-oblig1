@@ -1,4 +1,4 @@
-package no.hvl.dat108.oblig1.oppgave2citywok.helpers;
+package no.hvl.dat108.oblig1.oppgave2.helpers;
 
 import java.time.LocalTime;
 

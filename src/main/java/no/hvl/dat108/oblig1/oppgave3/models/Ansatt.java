@@ -1,9 +1,9 @@
-package no.hvl.dat108.oblig1.oppgave3citywok.models;
+package no.hvl.dat108.oblig1.oppgave3.models;
 
 
 import java.util.Random;
 
-import static no.hvl.dat108.oblig1.oppgave3citywok.helpers.Utility.*;
+import static no.hvl.dat108.oblig1.oppgave3.helpers.Utility.*;
 
 public abstract class Ansatt {
 

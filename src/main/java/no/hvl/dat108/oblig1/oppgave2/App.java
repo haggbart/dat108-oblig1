@@ -1,13 +1,13 @@
-package no.hvl.dat108.oblig1.oppgave2citywok;
+package no.hvl.dat108.oblig1.oppgave2;
 
-import no.hvl.dat108.oblig1.oppgave2citywok.models.Kokk;
-import no.hvl.dat108.oblig1.oppgave2citywok.models.Rutsjebane;
-import no.hvl.dat108.oblig1.oppgave2citywok.models.Servitoer;
+import no.hvl.dat108.oblig1.oppgave2.models.Kokk;
+import no.hvl.dat108.oblig1.oppgave2.models.Rutsjebane;
+import no.hvl.dat108.oblig1.oppgave2.models.Servitoer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static no.hvl.dat108.oblig1.oppgave2citywok.helpers.Utility.currentTime;
+import static no.hvl.dat108.oblig1.oppgave2.helpers.Utility.currentTime;
 
 public class App {
 

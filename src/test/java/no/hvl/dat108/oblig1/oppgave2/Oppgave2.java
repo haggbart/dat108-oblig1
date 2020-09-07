@@ -1,16 +1,13 @@
-package no.hvl.dat108.oblig1.oppgave1;
+package no.hvl.dat108.oblig1.oppgave2;
 
 import org.junit.jupiter.api.Test;
 
-class Oppgave1Test {
+class Oppgave2 {
 
     @Test
-    void success() {
-    }
+    void main() {
 
-//    @Test
-//    void main() {
-//
+        App.main(null);
 //        var t = new Thread(() -> {
 //            Main.main(null);
 //            try {
@@ -26,5 +23,6 @@ class Oppgave1Test {
 //        } catch (InterruptedException e) {
 //            fail();
 //        }
-//    }
+    }
+
 }
