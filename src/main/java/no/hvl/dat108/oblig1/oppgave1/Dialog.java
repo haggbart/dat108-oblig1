@@ -15,16 +15,9 @@ public class Dialog implements Runnable {
         String DIALOG = "Skriv inn din melding, trykk cancel eller skriv 'quit' for å avslutte.";
         String input;
 
-        while ((input = showInputDialog(DIALOG)) != null) {
+        while ((input = showInputDialog(DIALOG)) != null
+                && !input.equalsIgnoreCase("quit")) {
             printer.setMessage(input);
-
-            if(input.toString().equalsIgnoreCase("quit")) {
-
-                System.out.println("Shutting down...");
-                printer.quit();
-                return;
-
-            }
         }
         System.out.println("Shutting down...");
         printer.quit();
